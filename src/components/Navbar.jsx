@@ -1,89 +1,89 @@
-// // // // // import { Link } from "react-router-dom";
-// // // // // import { useContext } from "react";
-// // // // // import { AuthContext } from "../context/AuthContext";
+// // // // // // import { Link } from "react-router-dom";
+// // // // // // import { useContext } from "react";
+// // // // // // import { AuthContext } from "../context/AuthContext";
 
-// // // // // export default function Navbar() {
-// // // // //   const { logout } = useContext(AuthContext);
+// // // // // // export default function Navbar() {
+// // // // // //   const { logout } = useContext(AuthContext);
 
-// // // // //   return (
-// // // // //     <div>
-// // // // //       <Link to="/home">Home</Link>
-// // // // //       <Link to="/profile">Profile</Link>
-// // // // //       <Link to="/status">Status</Link>
-// // // // //       <Link to="/notifications">Notifications</Link>
-// // // // //       <button onClick={logout}>Logout</button>
-// // // // //     </div>
-// // // // //   );
-// // // // // }
+// // // // // //   return (
+// // // // // //     <div>
+// // // // // //       <Link to="/home">Home</Link>
+// // // // // //       <Link to="/profile">Profile</Link>
+// // // // // //       <Link to="/status">Status</Link>
+// // // // // //       <Link to="/notifications">Notifications</Link>
+// // // // // //       <button onClick={logout}>Logout</button>
+// // // // // //     </div>
+// // // // // //   );
+// // // // // // }
 
-// // // import { useNavigate } from "react-router-dom";
+// // // // import { useNavigate } from "react-router-dom";
+
+// // // // export default function Navbar() {
+// // // //   const nav = useNavigate();
+
+// // // //   return (
+// // // //     <div style={{
+// // // //       display: "flex",
+// // // //       justifyContent: "space-between",
+// // // //       padding: "10px",
+// // // //       borderBottom: "1px solid gray",
+// // // //       background: "#eee"
+// // // //     }}>
+// // // //       <h3>💬 Chat App</h3>
+
+// // // //       <div>
+// // // //         <button onClick={() => nav("/home")}>Chats</button>
+// // // //         <button onClick={() => nav("/status")}>Status</button>
+// // // //         <button onClick={() => nav("/notifications")}>🔔</button>
+// // // //         <button onClick={() => nav("/profile")}>Profile</button>
+// // // //       </div>
+// // // //     </div>
+// // // //   );
+// // // // }
+
+
+// // // import { Link } from "react-router-dom";
+// // // import { useContext } from "react";
+// // // import { AuthContext } from "../context/AuthContext";
 
 // // // export default function Navbar() {
-// // //   const nav = useNavigate();
+// // //   const { logout } = useContext(AuthContext);
 
 // // //   return (
-// // //     <div style={{
-// // //       display: "flex",
-// // //       justifyContent: "space-between",
-// // //       padding: "10px",
-// // //       borderBottom: "1px solid gray",
-// // //       background: "#eee"
-// // //     }}>
-// // //       <h3>💬 Chat App</h3>
-
-// // //       <div>
-// // //         <button onClick={() => nav("/home")}>Chats</button>
-// // //         <button onClick={() => nav("/status")}>Status</button>
-// // //         <button onClick={() => nav("/notifications")}>🔔</button>
-// // //         <button onClick={() => nav("/profile")}>Profile</button>
-// // //       </div>
+// // //     <div>
+// // //       <Link to="/home">Home</Link>
+// // //       <Link to="/profile">Profile</Link>
+// // //       <Link to="/status">Status</Link>
+// // //       <Link to="/notifications">Notifications</Link>
+// // //       <button onClick={logout}>Logout</button>
 // // //     </div>
 // // //   );
 // // // }
 
-
-// // import { Link } from "react-router-dom";
-// // import { useContext } from "react";
-// // import { AuthContext } from "../context/AuthContext";
+// // import { useNavigate } from "react-router-dom";
 
 // // export default function Navbar() {
-// //   const { logout } = useContext(AuthContext);
+// //   const nav = useNavigate();
 
 // //   return (
-// //     <div>
-// //       <Link to="/home">Home</Link>
-// //       <Link to="/profile">Profile</Link>
-// //       <Link to="/status">Status</Link>
-// //       <Link to="/notifications">Notifications</Link>
-// //       <button onClick={logout}>Logout</button>
+// //     <div style={{
+// //       display: "flex",
+// //       justifyContent: "space-between",
+// //       padding: "10px",
+// //       borderBottom: "1px solid gray",
+// //       background: "#eee"
+// //     }}>
+// //       <h3>💬 Chat App</h3>
+
+// //       <div>
+// //         <button onClick={() => nav("/home")}>Chats</button>
+// //         <button onClick={() => nav("/status")}>Status</button>
+// //         <button onClick={() => nav("/notifications")}>🔔</button>
+// //         <button onClick={() => nav("/profile")}>Profile</button>
+// //       </div>
 // //     </div>
 // //   );
 // // }
-
-// import { useNavigate } from "react-router-dom";
-
-// export default function Navbar() {
-//   const nav = useNavigate();
-
-//   return (
-//     <div style={{
-//       display: "flex",
-//       justifyContent: "space-between",
-//       padding: "10px",
-//       borderBottom: "1px solid gray",
-//       background: "#eee"
-//     }}>
-//       <h3>💬 Chat App</h3>
-
-//       <div>
-//         <button onClick={() => nav("/home")}>Chats</button>
-//         <button onClick={() => nav("/status")}>Status</button>
-//         <button onClick={() => nav("/notifications")}>🔔</button>
-//         <button onClick={() => nav("/profile")}>Profile</button>
-//       </div>
-//     </div>
-//   );
-// }
 
 import { useNavigate, useLocation } from "react-router-dom";
 import { FiMessageSquare, FiBell, FiUser, FiZap } from "react-icons/fi";
@@ -151,3 +151,5 @@ export default function Navbar() {
     </div>
   );
 }
+
+

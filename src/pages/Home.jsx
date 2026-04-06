@@ -3293,36 +3293,72 @@ const handleEditGroup = async (groupId, newName) => {
   // };
 
   // //   // -----------------------------
-  const handleFileUpload = async e => {
-    const file = e.target.files[0];
-    if (!file) return;
-    setUploading(true);
-    try {
-      const formData = new FormData();
-      formData.append("file", file);
-      formData.append("upload_preset", "YOUR_CLOUDINARY_PRESET");
+  // const handleFileUpload = async e => {
+  //   const file = e.target.files[0];
+  //   if (!file) return;
+  //   setUploading(true);
+  //   try {
+  //     const formData = new FormData();
+  //     formData.append("file", file);
+  //     formData.append("upload_preset", "YOUR_CLOUDINARY_PRESET");
 
-      const res = await fetch(
-        "https://api.cloudinary.com/v1_1/dhi8llpui/image/upload",
-        { method: "POST", body: formData }
-      );
-      const data = await res.json();
-      const uploadedUrl = data.secure_url;
+  //     const res = await fetch(
+  //       "https://api.cloudinary.com/v1_1/dhi8llpui/image/upload",
+  //       { method: "POST", body: formData }
+  //     );
+  //     const data = await res.json();
+  //     const uploadedUrl = data.secure_url;
 
-      await API.post(
-        "/api/status",
-        { type: "image", mediaUrl: uploadedUrl },
-        { headers: { Authorization: `Bearer ${user.token}` } }
-      );
-      fetchStatus();
-    } catch (err) {
-      console.error(err);
-      alert("Failed to upload status ❌");
-    } finally {
-      setUploading(false);
-      e.target.value = null;
-    }
-  };
+  //     await API.post(
+  //       "/api/status",
+  //       { type: "image", mediaUrl: uploadedUrl },
+  //       { headers: { Authorization: `Bearer ${user.token}` } }
+  //     );
+  //     fetchStatus();
+  //   } catch (err) {
+  //     console.error(err);
+  //     alert("Failed to upload status ❌");
+  //   } finally {
+  //     setUploading(false);
+  //     e.target.value = null;
+  //   }
+  // };
+
+  const handleFileUpload = async (e) => {
+  const file = e.target.files[0];
+  if (!file) return;
+  setUploading(true);
+
+  try {
+    // 1️⃣ Upload file to backend
+    const formData = new FormData();
+    formData.append("file", file);
+
+    const uploadRes = await API.post("/api/upload", formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+        Authorization: `Bearer ${user.token}`,
+      },
+    });
+
+    const uploadedUrl = uploadRes.data.url; // <-- backend returns { url: "..." }
+
+    // 2️⃣ Create status
+    await API.post(
+      "/api/status",
+      { type: "image", mediaUrl: uploadedUrl },
+      { headers: { Authorization: `Bearer ${user.token}` } }
+    );
+
+    fetchStatus(); // refresh the statuses
+  } catch (err) {
+    console.error("Upload error:", err);
+    alert("Failed to upload status ❌");
+  } finally {
+    setUploading(false);
+    e.target.value = null;
+  }
+};
 
   const viewStatus = (id) => {
     nav(`/status/${id}`);
@@ -3439,7 +3475,11 @@ const handleEditGroup = async (groupId, newName) => {
 
 {groups.map(g => (
   <div key={g._id} className="flex justify-between items-center p-2 rounded-xl hover:bg-white cursor-pointer">
-    <div className="flex gap-2 items-center" onClick={() => nav(`/group/${g._id}`)}>
+    <div className="flex gap-2 items-center" 
+    // onClick={() => nav(`/group/${g._id}`)}
+    // Instead of nav(`/group/${g._id}`)
+onClick={() => nav(`/chat/${g._id}`)}
+    >
       <div className="w-10 h-10 rounded-full bg-purple-200 flex items-center justify-center text-white font-bold">
         {g.chatName[0]}
       </div>

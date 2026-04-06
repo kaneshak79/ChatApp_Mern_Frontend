@@ -46,7 +46,7 @@ function App() {
         <Route path="/group-chat/:id" element={<GroupPage />} />
 
         {/* Group members */}
-        <Route path="/group/:id" element={<GroupMembersPage />} />
+        <Route path="/chat/group/:id" element={<GroupMembersPage />} />
 
         {/* User profile */}
         {/* <Route path="/user/:id" element={<Profile />} /> */}
